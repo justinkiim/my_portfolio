@@ -1,6 +1,6 @@
 /* GENERAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 * {
   margin: 0;
@@ -174,6 +174,7 @@ section {
   height: 400px;
   width: 400px;
   margin: auto 0;
+  justify-content: center;
 }
 
 .section__text {
@@ -331,6 +332,35 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  gap: 10rem;
+}
+
+.experience-item {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Space between logo and description */
+  margin-bottom: 3rem; /* Add space below each experience item */
+}
+
+.company-logo {
+  width: 100px; /* Set a fixed width for the logo */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the logo fits nicely */
+}
+
+.experience-description {
+  flex: 1; /* Take up remaining space */
+}
+
+.experience-description h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.experience-description p {
+  font-size: 1rem;
+  color: rgb(85, 85, 85); /* Optional: Adjust text color */
 }
 
 .article-container {
