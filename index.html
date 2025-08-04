@@ -17,6 +17,7 @@
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -43,11 +44,10 @@
         <img src="./assets/Justin.jpeg" alt="Justin Kim profile picture" />
       </div>
       <div class="section__text">
-        <p class="section__text__p1">Hello World, I'm</p>
+        <p class="section__text__p1">Aspiring Fellow of the Casualty Actuarial Society (FCAS)</p>
         <h1 class="title">Justin Kim</h1>
         <p class="section__text__p2">Portfolio Analytics & Insights Analyst</p>
         <p class="section__text__p2">formerly, Actuarial Analyst</p>
-        <p class="section__text__p4">Aspiring Fellow of the Casualty Actuarial Society (FCAS)</p>
         <p> </p>
         <div class="btn-container">
           <button
@@ -75,6 +75,12 @@
           />
         </div>
       </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#about'"
+      />
     </section>
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
@@ -127,12 +133,6 @@
         class="icon arrow"
         onclick="location.href='./#experience'"
       />
-    </section>
-    <section id="fcas-progress">
-      <p class="section__text__p1">Track my Journey</p>
-      <h1 class="title">FCAS Designation</h1>
-      <canvas id="examProgressChart" width="600" height="400"></canvas>
-      </div>
     </section>
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
@@ -309,7 +309,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#projects'"
+        onclick="location.href='./#FCAS_Designation'"
       />
         <div class="experience-item">
           <img
@@ -385,6 +385,18 @@
           </div>
         </div>
     </section>
+    <section id="FCAS_Designation">
+      <p class="section__text__p1">Track my Journey</p>
+      <h1 class="title">FCAS Designation</h1>
+      <canvas id="examProgressChart" width="600" height="400"></canvas>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
@@ -455,6 +467,7 @@
           <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#FCAS_Designation">FCAS Designation</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
