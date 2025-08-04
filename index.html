@@ -7,6 +7,72 @@
     <title>Justin Kim</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('examProgressChart').getContext('2d');
+    
+      const examLabels = [
+        'Exam P', 'Exam FM', 'Exam IFM', 'MAS-I', 'MAS-II',
+        'Exam 5', 'Exam 6', 'Exam 7', 'Exam 8', 'Exam 9'
+      ];
+    
+      const examStatus = [
+        100, // Passed
+        100, // Passed
+        100, // Passed
+        100, // Passed
+        50,  // In Progress
+        0,   // Not Started
+        0,
+        0,
+        0,
+        0
+      ];
+    
+      const bgColors = examStatus.map(status => {
+        if (status === 100) return '#4caf50';        // Green for passed
+        if (status > 0) return '#ff9800';            // Orange for in progress
+        return '#9e9e9e';                            // Gray for not started
+      });
+    
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: examLabels,
+          datasets: [{
+            label: 'Progress (%)',
+            data: examStatus,
+            backgroundColor: bgColors,
+            borderRadius: 5
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          scales: {
+            x: {
+              max: 100,
+              title: {
+                display: true,
+                text: 'Completion %'
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const val = context.parsed.x;
+                  if (val === 100) return '✅ Passed';
+                  if (val > 0) return `🔄 In Progress (${val}%)`;
+                  return '❌ Not Started';
+                }
+              }
+            },
+            legend: { display: false }
+          }
+        }
+      });
+    </script>
   </head>
   <body>
     <nav id="desktop-nav">
@@ -44,7 +110,9 @@
         <p class="section__text__p1">Hello World, I'm</p>
         <h1 class="title">Justin Kim</h1>
         <p class="section__text__p2">Portfolio Analytics & Insights Analyst</p>
-        <p class="section__text_p3">formerly, Actuarial Analyst</p>"
+        <p class="section__text__p2">formerly, Actuarial Analyst</p>
+        <p class="section__text__p4">Aspiring Fellow of the Casualty Actuarial Society (FCAS)</p>
+        <p> </p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
@@ -123,6 +191,12 @@
         class="icon arrow"
         onclick="location.href='./#experience'"
       />
+    </section>
+    <section id="fcas-progress">
+      <p class="section__text__p1">Track my Journey</p>
+      <h1 class="title">FCAS Designnation</h1>
+      <canvas id="examProgressChart" width="600" height="400"></canvas>
+      </div>
     </section>
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
