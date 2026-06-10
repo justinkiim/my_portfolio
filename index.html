@@ -10,18 +10,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+
     <!-- Desktop Nav -->
     <nav id="desktop-nav">
       <div class="logo">Justin Kim</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#FCAS_Designation">FCAS Designation</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#FCAS_Designation">FCAS</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
 
     <!-- Mobile Nav -->
@@ -29,16 +28,14 @@
       <div class="logo">Justin Kim</div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </div>
         <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#FCAS_Designation" onclick="toggleMenu()">FCAS Designation</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          <li><a href="#about"            onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience"       onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#FCAS_Designation" onclick="toggleMenu()">FCAS</a></li>
+          <li><a href="#projects"         onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact"          onclick="toggleMenu()">Contact</a></li>
         </div>
       </div>
     </nav>
@@ -49,35 +46,23 @@
         <img src="./assets/Me.png" alt="Justin Kim profile picture" />
       </div>
       <div class="section__text">
-        <p class="section__text__p1">Aspiring Fellow of the Casualty Actuarial Society (FCAS)</p>
+        <p class="section__text__p1">Aspiring FCAS · Actuarial Analyst</p>
         <h1 class="title">Justin Kim</h1>
-        <h1 class="section__text__p2">Actuarial Analyst</h1>
-
+        <p class="section__text__p2">Property &amp; Casualty Insurance</p>
         <div class="btn-container">
-          <button class="btn btn-color-2" onclick="window.open('')"> 
-            Download Resume
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='#contact'">
-            Contact Me
-          </button>
+          <button class="btn btn-color-2" onclick="window.open('')">Download Resume</button>
+          <button class="btn btn-color-1" onclick="location.href='#contact'">Contact Me</button>
         </div>
-
         <div id="socials-container">
           <img
             src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
+            alt="LinkedIn"
             class="icon"
             onclick="location.href='https://linkedin.com/in/justinkim14'"
           />
         </div>
       </div>
-
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#about'"
-      />
+      <img src="./assets/arrow.png" alt="Scroll down" class="icon arrow" onclick="location.href='#about'" />
     </section>
 
     <!-- About -->
@@ -85,38 +70,29 @@
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
-        <div class="section__pic-container">
-          <img src="./assets/profile-pic.png" alt="Profile picture" class="about-pic" />
-        </div>
+        <img src="./assets/profile-pic.png" alt="Profile picture" class="about-pic" />
         <div class="about-details-container">
           <div class="about-containers">
             <div class="details-container">
-              <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+              <img src="./assets/experience.png" alt="Experience" class="icon" />
               <h3>Experience</h3>
               <p>2+ years<br />in various Actuarial Practices</p>
             </div>
             <div class="details-container">
-              <img src="./assets/education.png" alt="Education icon" class="icon" />
+              <img src="./assets/education.png" alt="Education" class="icon" />
               <h3>Education</h3>
-              <p>B.Math: Math + Statistics + Business Administration</p>
+              <p>B.Math: Math + Statistics<br />+ Business Administration</p>
             </div>
           </div>
-
           <div class="text-container">
             <ul>
-              <li>Actuarial Analyst on the Excess & Reinsurance team at ISO/Verisk, focused on Reserving, Pricing Models, and elevating our P&C product to the next level.</li>
-              <li>Hands-on with Python/SQL for modeling and Power BI for executive-ready visuals across various P&C LoB.</li>
+              <li>Actuarial Analyst on the Excess &amp; Reinsurance team at ISO/Verisk, focused on Reserving, Pricing Models, and elevating our P&amp;C product.</li>
+              <li>Hands-on with Python/SQL for modeling and Power BI for executive-ready visuals across various P&amp;C lines of business.</li>
             </ul>
           </div>
         </div>
       </div>
-
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
+      <img src="./assets/arrow.png" alt="Next section" class="icon arrow" onclick="location.href='#experience'" />
     </section>
 
     <!-- Experience -->
@@ -124,96 +100,50 @@
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Experience</h1>
 
+      <!-- Skill grids -->
       <div class="experience-details-container">
         <div class="about-containers">
-          <!-- Skills: Analytical Tools -->
+
           <div class="details-container">
             <h2 class="experience-sub-title">Analytical Tools</h2>
             <div class="article-container">
-              <article>
-                <img src="./assets/python.png" alt="Python icon" class="icon" />
-                <div><h3>Python</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/sql.png" alt="SQL icon" class="icon" />
-                <div><h3>SQL</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/r.png" alt="R icon" class="icon" />
-                <div><h3>R</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/powerbi.png" alt="Power BI icon" class="icon" />
-                <div><h3>Power BI</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/tableau.png" alt="Tableau icon" class="icon" />
-                <div><h3>Tableau</h3><p>Intermediate</p></div>
-              </article>
-              <article>
-                <img src="./assets/excel.png" alt="Excel icon" class="icon" />
-                <div><h3>Excel</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/fe.png" alt="Frontend icon" class="icon" />
-                <div><h3>HTML/CSS/JS</h3><p>Intermediate</p></div>
-              </article>
-              <article>
-                <img src="./assets/git.png" alt="Git icon" class="icon" />
-                <div><h3>Git</h3><p>Experienced</p></div>
-              </article>
+              <article><img src="./assets/python.png"  alt="Python"   class="icon" /><div><h3>Python</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/sql.png"     alt="SQL"      class="icon" /><div><h3>SQL</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/r.png"       alt="R"        class="icon" /><div><h3>R</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/powerbi.png" alt="Power BI" class="icon" /><div><h3>Power BI</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/tableau.png" alt="Tableau"  class="icon" /><div><h3>Tableau</h3><p>Intermediate</p></div></article>
+              <article><img src="./assets/excel.png"   alt="Excel"    class="icon" /><div><h3>Excel</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/fe.png"      alt="Frontend" class="icon" /><div><h3>HTML/CSS/JS</h3><p>Intermediate</p></div></article>
+              <article><img src="./assets/git.png"     alt="Git"      class="icon" /><div><h3>Git</h3><p>Experienced</p></div></article>
             </div>
           </div>
 
-          <!-- Skills: Quantitative Insights -->
           <div class="details-container">
             <h2 class="experience-sub-title">Quantitative Insights</h2>
             <div class="article-container">
-              <article>
-                <img src="./assets/qa.png" alt="Quant analysis icon" class="icon" />
-                <div><h3>Quantitative Analysis</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/a:b.png" alt="A/B testing icon" class="icon" />
-                <div><h3>A/B Testing</h3><p>Intermediate</p></div>
-              </article>
-              <article>
-                <img src="./assets/growth.png" alt="Growth icon" class="icon" />
-                <div><h3>Growth Strategy</h3><p>Intermediate</p></div>
-              </article>
-              <article>
-                <img src="./assets/inference.png" alt="Inference icon" class="icon" />
-                <div><h3>Causal Inference</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/forecasting.png" alt="Forecasting icon" class="icon" />
-                <div><h3>Forecasting</h3><p>Experienced</p></div>
-              </article>
-              <article>
-                <img src="./assets/ML.png" alt="ML icon" class="icon" />
-                <div><h3>Machine Learning</h3><p>Intermediate</p></div>
-              </article>
+              <article><img src="./assets/qa.png"          alt="Quant Analysis" class="icon" /><div><h3>Quantitative Analysis</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/a:b.png"         alt="A/B Testing"    class="icon" /><div><h3>A/B Testing</h3><p>Intermediate</p></div></article>
+              <article><img src="./assets/growth.png"      alt="Growth"         class="icon" /><div><h3>Growth Strategy</h3><p>Intermediate</p></div></article>
+              <article><img src="./assets/inference.png"   alt="Inference"      class="icon" /><div><h3>Causal Inference</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/forecasting.png" alt="Forecasting"    class="icon" /><div><h3>Forecasting</h3><p>Experienced</p></div></article>
+              <article><img src="./assets/ML.png"          alt="ML"             class="icon" /><div><h3>Machine Learning</h3><p>Intermediate</p></div></article>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- Experience Items -->
-      <div class="experience-item">
-        <img src="./assets/Verisk.png" alt="Verisk logo" class="company-logo" />
+      <!-- Work history -->
+      <div class="experience-item" style="margin-top:3rem">
+        <img src="./assets/Verisk.png" alt="Verisk" class="company-logo" />
         <div class="experience-description">
           <h3>📊 Actuarial Analyst</h3>
           <p class="experience-dates">October 2025 – Present</p>
-
           <div class="experience-tags">
-            <span class="tag">SQL</span>
-            <span class="tag">ETL</span>
-            <span class="tag">ERP Migration</span>
-            <span class="tag">Python</span>
-            <span class="tag">ARIMA</span>
-            <span class="tag">Power BI</span>
+            <span class="tag">SQL</span><span class="tag">ETL</span>
+            <span class="tag">ERP Migration</span><span class="tag">Python</span>
+            <span class="tag">ARIMA</span><span class="tag">Power BI</span>
           </div>
-
           <ul class="experience-list">
             <li><strong>⚙️ Product Development:</strong> .</li>
             <li><strong>📉 Second:</strong> .</li>
@@ -223,20 +153,15 @@
       </div>
 
       <div class="experience-item">
-        <img src="./assets/RBC.png" alt="RBC logo" class="company-logo" />
+        <img src="./assets/RBC.png" alt="RBC" class="company-logo" />
         <div class="experience-description">
           <h3>📊 Actuarial Analyst</h3>
           <p class="experience-dates">September 2025 – October 2025</p>
-
           <div class="experience-tags">
-            <span class="tag">SQL</span>
-            <span class="tag">ETL</span>
-            <span class="tag">ERP Migration</span>
-            <span class="tag">Python</span>
-            <span class="tag">ARIMA</span>
-            <span class="tag">Power BI</span>
+            <span class="tag">SQL</span><span class="tag">ETL</span>
+            <span class="tag">ERP Migration</span><span class="tag">Python</span>
+            <span class="tag">ARIMA</span><span class="tag">Power BI</span>
           </div>
-
           <ul class="experience-list">
             <li><strong>⚙️ Product Development:</strong> .</li>
             <li><strong>📉 Second:</strong> .</li>
@@ -246,121 +171,92 @@
       </div>
 
       <div class="experience-item">
-        <img src="./assets/Co-operators.png" alt="Co-operators logo" class="company-logo" />
+        <img src="./assets/Co-operators.png" alt="Co-operators" class="company-logo" />
         <div class="experience-description">
-          <h3>👨🏻‍💻 Portfolio Analytics & Insights Analyst</h3>
-          <p class="experience-dates">January 2025 - Present</p>
-
+          <h3>👨🏻‍💻 Portfolio Analytics &amp; Insights Analyst</h3>
+          <p class="experience-dates">January 2025 – Present</p>
           <div class="experience-tags">
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">GLM</span>
-            <span class="tag">Earnix</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">LLM</span>
+            <span class="tag">Python</span><span class="tag">SQL</span>
+            <span class="tag">GLM</span><span class="tag">Earnix</span>
+            <span class="tag">Power BI</span><span class="tag">LLM</span>
             <span class="tag">Regulatory Reporting</span>
           </div>
-
           <ul class="experience-list">
-            <li><strong>📈 Modeling & Automation:</strong> Python/SQL investigation app for rate reviews (GLMs for Non-Renewal, Quotes, Premium Realization), cutting review time by <strong>60%</strong>.</li>
+            <li><strong>📈 Modeling &amp; Automation:</strong> Python/SQL investigation app for rate reviews (GLMs for Non-Renewal, Quotes, Premium Realization), cutting review time by <strong>60%</strong>.</li>
             <li><strong>🧠 Narrative AI:</strong> LLM pipeline to interpret KPIs/visuals and auto-draft exec commentary; manual reporting down <strong>40%</strong>.</li>
-            <li><strong>💰 Pricing:</strong> Calibrated Earnix pricing across three provinces; target loss ratio up <strong>5–7%</strong> and competitiveness improved in auto & home.</li>
+            <li><strong>💰 Pricing:</strong> Calibrated Earnix pricing across three provinces; target loss ratio up <strong>5–7%</strong> and competitiveness improved in auto &amp; home.</li>
             <li><strong>🎲 Stochastic Reserving:</strong> Python workflows simulating reserve variability; improved reserve adequacy/LDF precision by <strong>20%</strong>.</li>
-            <li><strong>📊 Monitoring:</strong> Built <em>Future of Portfolio Monitoring</em> (Power BI, advanced DAX) for +3M risks—proactive steering & executive-level insights.</li>
+            <li><strong>📊 Monitoring:</strong> Built <em>Future of Portfolio Monitoring</em> (Power BI, advanced DAX) for +3M risks.</li>
             <li><strong>🌱 OSFI Reporting:</strong> SQL ETL on ~$3B risk-level data with Finance for emissions regulatory submissions.</li>
           </ul>
         </div>
       </div>
 
       <div class="experience-item">
-        <img src="./assets/project-2.png" alt="EY logo" class="company-logo" />
+        <img src="./assets/project-2.png" alt="EY" class="company-logo" />
         <div class="experience-description">
           <h3>📚 Staff Accountant II/I</h3>
           <p class="experience-dates">January 2022 – May 2023</p>
-
           <div class="experience-tags">
-            <span class="tag">Power Query</span>
-            <span class="tag">VBA</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Tax Filing</span>
+            <span class="tag">Power Query</span><span class="tag">VBA</span>
+            <span class="tag">Excel</span><span class="tag">Tax Filing</span>
             <span class="tag">Compliance</span>
           </div>
-
           <ul class="experience-list">
             <li><strong>⚙️ Automation:</strong> Automated income distribution for 20+ clients (Power Query/VBA), cutting reporting time by <strong>60%</strong>.</li>
-            <li><strong>🧾 Summaries:</strong> Produced 100+ financial summaries for non-resident clients (compensation, multi-jurisdiction, foreign tax credit).</li>
-            <li><strong>🗂️ Compliance:</strong> Prepared/reviewed 1,400+ Canadian & U.S. personal returns with on-time, compliant filings.</li>
+            <li><strong>🧾 Summaries:</strong> Produced 100+ financial summaries for non-resident clients.</li>
+            <li><strong>🗂️ Compliance:</strong> Prepared/reviewed 1,400+ Canadian &amp; U.S. personal returns.</li>
           </ul>
         </div>
       </div>
 
       <div class="experience-item">
-        <img src="./assets/statscan.png" alt="Statistics Canada logo" class="company-logo" />
+        <img src="./assets/statscan.png" alt="Statistics Canada" class="company-logo" />
         <div class="experience-description">
           <h3>📈 Data Analyst</h3>
           <p class="experience-dates">April 2021 – July 2021</p>
-
           <div class="experience-tags">
-            <span class="tag">Tableau</span>
-            <span class="tag">Survey Design</span>
-            <span class="tag">Census</span>
-            <span class="tag">Data Collection</span>
-            <span class="tag">Demographics</span>
+            <span class="tag">Tableau</span><span class="tag">Survey Design</span>
+            <span class="tag">Census</span><span class="tag">Demographics</span>
             <span class="tag">Real-Time Dashboards</span>
           </div>
-
           <ul class="experience-list">
-            <li><strong>📦 Census Ops:</strong> Coordinated end-to-end data collection/processing for 50,000+ households (2021 Canada census).</li>
-            <li><strong>📊 Monitoring:</strong> Built Tableau dashboards for real-time response rates & demographic coverage (weekly reporting).</li>
-            <li><strong>🤝 Methods:</strong> Collaborated cross-functionally on survey instruments and field ops, boosting response rates.</li>
+            <li><strong>📦 Census Ops:</strong> Coordinated data collection/processing for 50,000+ households (2021 Canada census).</li>
+            <li><strong>📊 Monitoring:</strong> Built Tableau dashboards for real-time response rates &amp; demographic coverage.</li>
+            <li><strong>🤝 Methods:</strong> Collaborated cross-functionally on survey instruments and field ops.</li>
           </ul>
         </div>
       </div>
 
-      <!-- close the container wrappers cleanly -->
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#FCAS_Designation'"
-      />
+      <img src="./assets/arrow.png" alt="Next section" class="icon arrow" onclick="location.href='#FCAS_Designation'" />
     </section>
 
     <!-- FCAS Designation -->
     <section id="FCAS_Designation">
-      <p class="section__text__p1">Track my Journey</p>
+      <p class="section__text__p1">Track My Journey</p>
       <h1 class="title">FCAS Designation</h1>
-      <canvas id="examProgressChart" width="600" height="400"></canvas>
-
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
+      <canvas id="examProgressChart" width="600" height="340"></canvas>
+      <img src="./assets/arrow.png" alt="Next section" class="icon arrow" onclick="location.href='#projects'" />
     </section>
 
     <!-- Projects -->
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
-
       <div class="experience-details-container">
-        <div class="details-container" style="max-width: 500px; margin: auto; text-align: center;">
-          <img src="./assets/project-1.png" alt="Multidimensional Index Project thumbnail" class="project-img" style="width: 300px; height: auto;" />
-          <h2 class="experience-sub-title" style="font-size: 1.2rem;">Multidimensional Index Project</h2>
-          <button class="btn btn-color-2" style="font-size: 0.9rem; padding: 0.5rem 1rem;" onclick="window.open('./assets/Kim, Justin - Multidimensional Index Project')">
-            Download PDF
-          </button>
+
+        <div class="details-container" style="max-width:420px; margin:auto; text-align:center;">
+          <img src="./assets/project-1.png" alt="Multidimensional Index Project" class="project-img" />
+          <h2 class="experience-sub-title" style="margin-top:1rem; text-transform:none; letter-spacing:0; font-size:1rem; color:rgba(255,255,255,0.85);">Multidimensional Index Project</h2>
+          <button class="btn btn-color-2" style="margin-top:0.85rem;" onclick="window.open('./assets/Kim, Justin - Multidimensional Index Project')">Download PDF</button>
         </div>
 
-        <div class="details-container" style="max-width: 500px; margin: auto; text-align: center;">
-          <img src="./assets/project-2.png" alt="Alberta Wildfire Project thumbnail" class="project-img" style="width: 300px; height: auto;" />
-          <h2 class="experience-sub-title" style="font-size: 1.2rem;">Alberta Wildfire Project</h2>
-          <button class="btn btn-color-2" style="font-size: 0.9rem; padding: 0.5rem 1rem;" onclick="window.open('./assets/Kim, Justin - Wildfire Project')">
-            Download PDF
-          </button>
+        <div class="details-container" style="max-width:420px; margin:auto; text-align:center;">
+          <img src="./assets/project-2.png" alt="Alberta Wildfire Project" class="project-img" />
+          <h2 class="experience-sub-title" style="margin-top:1rem; text-transform:none; letter-spacing:0; font-size:1rem; color:rgba(255,255,255,0.85);">Alberta Wildfire Project</h2>
+          <button class="btn btn-color-2" style="margin-top:0.85rem;" onclick="window.open('./assets/Kim, Justin - Wildfire Project')">Download PDF</button>
         </div>
+
       </div>
     </section>
 
@@ -370,11 +266,11 @@
       <h1 class="title">Contact Me</h1>
       <div class="contact-info-upper-container">
         <div class="contact-info-container">
-          <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+          <img src="./assets/email.png" alt="Email" class="icon contact-icon email-icon" />
           <p><a href="mailto:j14kim@outlook.com">j14kim@outlook.com</a></p>
         </div>
         <div class="contact-info-container">
-          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+          <img src="./assets/linkedin.png" alt="LinkedIn" class="icon contact-icon" />
           <p><a href="https://www.linkedin.com/in/justinkim14" target="_blank" rel="noopener">LinkedIn</a></p>
         </div>
       </div>
@@ -383,19 +279,16 @@
     <!-- Footer -->
     <footer>
       <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#FCAS_Designation">FCAS Designation</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#FCAS_Designation">FCAS</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
   </body>
 </html>
