@@ -4,7 +4,7 @@ function toggleMenu() {
   document.querySelector(".hamburger-icon").classList.toggle("open");
 }
 
-/* Adds a 'scrolled' class to the desktop nav once the page scrolls past 24px. */
+/* Adds a 'scrolled' class to the desktop nav once the user scrolls past 24 px. */
 function initNavScroll() {
   const nav = document.getElementById("desktop-nav");
   if (!nav) return;
@@ -13,18 +13,52 @@ function initNavScroll() {
   }, { passive: true });
 }
 
-/* Fades and slides up elements with class 'reveal' when they enter the viewport. */
+/* Fades and slides up every element with class 'reveal' as it enters the viewport. */
 function initScrollReveal() {
   const obs = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
     }),
-    { threshold: 0.10 }
+    { threshold: 0.08 }
   );
   document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 }
 
-/* Applies a subtle 3-D perspective tilt to hovered cards. */
+/* Adds a hover 'tl-active' class to each timeline item for the accent highlight. */
+function initTimeline() {
+  document.querySelectorAll(".tl-item").forEach((item) => {
+    item.addEventListener("mouseenter", () => item.classList.add("tl-active"));
+    item.addEventListener("mouseleave", () => item.classList.remove("tl-active"));
+  });
+}
+
+/* Toggles the expandable drawer inside a bento project card. */
+function initBentoCards() {
+  document.querySelectorAll(".bento-toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const drawer = document.getElementById(btn.dataset.target);
+      if (!drawer) return;
+
+      const isOpen = drawer.classList.contains("open");
+
+      /* Close all drawers first */
+      document.querySelectorAll(".bento-drawer.open").forEach((d) => d.classList.remove("open"));
+      document.querySelectorAll(".bento-toggle-btn.open").forEach((b) => {
+        b.classList.remove("open");
+        b.querySelector("span").textContent = "View Details";
+      });
+
+      /* Open this one if it was closed */
+      if (!isOpen) {
+        drawer.classList.add("open");
+        btn.classList.add("open");
+        btn.querySelector("span").textContent = "Hide Details";
+      }
+    });
+  });
+}
+
+/* Applies a subtle perspective tilt to hovered tilt-card elements. */
 function initTiltCards() {
   document.querySelectorAll(".tilt-card").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
@@ -32,7 +66,7 @@ function initTiltCards() {
       const x = (e.clientX - r.left) / r.width  - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
       card.style.transform =
-        `perspective(900px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-3px)`;
+        `perspective(900px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-5px)`;
     });
     card.addEventListener("mouseleave", () => {
       card.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateY(0)";
@@ -40,12 +74,26 @@ function initTiltCards() {
   });
 }
 
-/* ─── FCAS Milestone Data ─────────────────────────────────────────── */
+/* Adds 'reveal' to profile elements and 'tilt-card' to bento cards. */
+function tagAnimatables() {
+  /* Profile section hero elements (HTML not changed) */
+  [".section__text", ".section__pic-container"].forEach((sel) =>
+    document.querySelectorAll(sel).forEach((el) => el.classList.add("reveal"))
+  );
+
+  /* Bento cards get the tilt interaction */
+  document.querySelectorAll(".bento-card").forEach((el) => el.classList.add("tilt-card"));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FCAS MILESTONE ROADMAP  ← UNCHANGED
+   ═══════════════════════════════════════════════════════════════════ */
+
 const MILESTONES = [
   {
     id: "p",    label: "P",      fullName: "Probability",
     category: "Preliminary",  status: "passed",   passYear: "2022",
-    desc: "Probability theory, random variables, and the common distributions foundational to actuarial modeling.",
+    desc: "Probability theory, random variables, and common distributions foundational to actuarial modeling.",
     topics: ["Probability Theory", "Random Variables", "Distributions", "Risk Modeling"]
   },
   {
@@ -104,7 +152,7 @@ const MILESTONES = [
   }
 ];
 
-/* Returns the SVG checkmark HTML string for passed milestones. */
+/* Returns the SVG checkmark string used inside passed milestone nodes. */
 function checkSVG() {
   return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" stroke-width="3"
@@ -113,7 +161,7 @@ function checkSVG() {
   </svg>`;
 }
 
-/* Returns the SVG star HTML string for the FCAS destination node. */
+/* Returns the SVG star string used inside the FCAS destination node. */
 function starSVG() {
   return `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77
@@ -121,14 +169,14 @@ function starSVG() {
   </svg>`;
 }
 
-/* Builds the HTML string for one milestone node column. */
+/* Builds and returns the HTML string for one milestone node column. */
 function renderNode(m) {
   const nodeClass = m.status === "passed" ? "passed"
-                  : m.id === "fcas"       ? "destination"
+                  : m.id    === "fcas"    ? "destination"
                   : "upcoming";
 
   const icon = m.status === "passed" ? checkSVG()
-             : m.id === "fcas"       ? starSVG()
+             : m.id    === "fcas"    ? starSVG()
              : `<span>${m.label}</span>`;
 
   const badgeClass = m.status === "passed" ? "passed" : "upcoming";
@@ -149,7 +197,7 @@ function renderNode(m) {
     </div>`;
 }
 
-/* Positions the track rail and animates the progress fill using rendered node positions. */
+/* Positions the FCAS track rail and animates the progress fill to the last passed node. */
 function positionTrack() {
   const wrapper   = document.querySelector(".fcas-timeline-wrapper");
   const trackBg   = document.querySelector(".fcas-track-bg");
@@ -158,9 +206,8 @@ function positionTrack() {
 
   if (!wrapper || !trackBg || !nodes.length) return;
 
-  const wRect = wrapper.getBoundingClientRect();
-  const firstCenter = nodes[0].getBoundingClientRect().left
-                    + nodes[0].offsetWidth / 2 - wRect.left;
+  const wRect       = wrapper.getBoundingClientRect();
+  const firstCenter = nodes[0].getBoundingClientRect().left + nodes[0].offsetWidth / 2 - wRect.left;
   const lastCenter  = nodes[nodes.length - 1].getBoundingClientRect().left
                     + nodes[nodes.length - 1].offsetWidth / 2 - wRect.left;
   const totalWidth  = lastCenter - firstCenter;
@@ -180,9 +227,9 @@ function positionTrack() {
   });
 }
 
-/* Wires up click interactions on milestone nodes to show/hide the detail panel. */
+/* Wires click events on milestone nodes to open/close the detail panel. */
 function initMilestoneClicks() {
-  const panel   = document.getElementById("fcas-detail");
+  const panel    = document.getElementById("fcas-detail");
   let   activeId = null;
 
   document.querySelectorAll(".milestone-item").forEach((item) => {
@@ -191,7 +238,6 @@ function initMilestoneClicks() {
       const m  = MILESTONES.find(x => x.id === id);
       if (!m) return;
 
-      /* Toggle off */
       if (activeId === id) {
         panel.classList.remove("visible");
         item.classList.remove("active");
@@ -206,8 +252,7 @@ function initMilestoneClicks() {
 
       const badgeClass = m.status === "passed" ? "passed" : "upcoming";
       const badgeText  = m.status === "passed" ? `✓ Passed ${m.passYear}` : "Upcoming";
-      const topicsHTML = m.topics
-        .map(t => `<span class="m-badge cat">${t}</span>`).join("");
+      const topicsHTML = m.topics.map(t => `<span class="m-badge cat">${t}</span>`).join("");
 
       panel.innerHTML = `
         <div class="fcas-detail-top">
@@ -238,7 +283,7 @@ function initMilestoneClicks() {
   });
 }
 
-/* Builds and injects the complete FCAS roadmap into #fcas-roadmap. */
+/* Builds and injects the complete FCAS milestone roadmap into #fcas-roadmap. */
 function initFCASRoadmap() {
   const container = document.getElementById("fcas-roadmap");
   if (!container) return;
@@ -285,49 +330,25 @@ function initFCASRoadmap() {
 
     <div class="fcas-detail-panel" id="fcas-detail"></div>`;
 
-  /* Animate the slim progress bar after a short delay */
   setTimeout(() => {
     const bar = document.getElementById("fcas-bar");
     if (bar) bar.style.width = pct + "%";
   }, 600);
 
-  /* Position track rail after paint */
   requestAnimationFrame(() => setTimeout(positionTrack, 120));
-
   initMilestoneClicks();
 }
 
-/* Adds 'reveal' and 'tilt-card' classes to elements that should animate on scroll. */
-function tagAnimatables() {
-  const revealSelectors = [
-    ".details-container", ".experience-item", ".project-card",
-    ".contact-info-container", ".section__text",
-    ".section__pic-container", ".text-container",
-  ];
-  revealSelectors.forEach(sel =>
-    document.querySelectorAll(sel).forEach(el => el.classList.add("reveal"))
-  );
-
-  document.querySelectorAll(".details-container, .experience-item, .project-card")
-    .forEach(el => el.classList.add("tilt-card"));
-}
-
-/* Wraps project details-containers with the project-card class and fixes inline title colors. */
-function upgradeProjectCards() {
-  document.querySelectorAll("#projects .details-container").forEach(el => {
-    el.classList.add("project-card");
-    /* Remove any stale dark-theme inline color on the title */
-    const h2 = el.querySelector(".experience-sub-title");
-    if (h2) { h2.classList.add("project-title"); h2.removeAttribute("style"); }
-  });
-}
-
+/* ═══════════════════════════════════════════════════════════════════
+   BOOT
+   ═══════════════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
-  upgradeProjectCards();
   initFCASRoadmap();
   tagAnimatables();
   initNavScroll();
   initScrollReveal();
+  initTimeline();
+  initBentoCards();
   initTiltCards();
 });
 
