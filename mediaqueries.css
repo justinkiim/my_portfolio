@@ -1,43 +1,65 @@
+/* ── 1200px: hide desktop nav, switch to hamburger ── */
 @media screen and (max-width: 1200px) {
-  section { padding: 5rem 2.5rem 3rem; }
+  section { padding: 5rem 2.5rem 4rem; }
 
-  #desktop-nav  { display: none; }
+  #desktop-nav   { display: none; }
   #hamburger-nav { display: flex; }
 
   #profile {
     flex-direction: column;
     gap: 2.5rem;
-    padding-top: 5rem;
+    padding-top: 4rem;
     min-height: unset;
   }
 
-  .section__pic-container { width: 240px; height: 240px; margin: 0 auto; }
+  .section__pic-container { width: 220px; height: 220px; margin: 0 auto; }
   .section-container { flex-direction: column; align-items: center; }
-  .about-pic { width: 100%; max-width: 340px; height: 240px; }
+  .about-pic { width: 100%; max-width: 320px; height: 260px; }
   .arrow { display: none; }
 }
 
-@media screen and (max-width: 768px) {
-  section { padding: 4rem 1.25rem 2.5rem; }
-
+/* ── 900px: compact experience cards ── */
+@media screen and (max-width: 900px) {
+  section { padding: 4.5rem 2rem 3.5rem; }
   .title { font-size: 2.2rem; }
+  .experience-item { gap: 1.5rem; }
+}
+
+/* ── 768px: stack most flex layouts ── */
+@media screen and (max-width: 768px) {
+  section { padding: 4rem 1.25rem 3rem; }
+  .title { font-size: 2rem; }
 
   .about-containers { flex-direction: column; }
 
-  .experience-item { flex-direction: column; align-items: flex-start; }
-  .company-logo { width: 60px; height: 60px; }
+  .experience-item {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .company-logo { width: 54px; height: 54px; }
 
   #projects .experience-details-container { flex-direction: column; align-items: center; }
   .project-card { max-width: 100%; }
 
   .contact-info-upper-container { flex-direction: column; align-items: center; }
-  .contact-info-container { width: 100%; max-width: 360px; justify-content: center; }
+  .contact-info-container { width: 100%; max-width: 320px; justify-content: center; }
+
+  .fcas-stats-row { gap: 2rem; }
+  .fcas-stat-number { font-size: 2rem; }
+
+  /* Tooltips are unreachable on touch — hide them; detail panel is the interaction */
+  .milestone-tooltip { display: none; }
 }
 
+/* ── 480px: mobile polish ── */
 @media screen and (max-width: 480px) {
-  .title { font-size: 1.85rem; }
-  .section__text__p2 { font-size: 1.1rem; }
-  .btn { padding: 0.65rem 1.25rem; font-size: 0.85rem; }
-  .logo { font-size: 1.2rem; }
-  .section__pic-container { width: 200px; height: 200px; }
+  .title { font-size: 1.75rem; }
+  .section__text__p2 { font-size: 1rem; }
+  .btn { padding: 0.65rem 1.2rem; font-size: 0.84rem; }
+  .logo { font-size: 1.1rem; }
+  .section__pic-container { width: 185px; height: 185px; }
+  .fcas-stats-row { gap: 1.5rem; }
+  .fcas-stat-number { font-size: 1.65rem; }
 }
