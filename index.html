@@ -9,32 +9,42 @@
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
+    <script>
+      (function(){var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.body.classList.add("dark-mode");})();
+    </script>
+    <div id="scroll-progress"></div>
 
-    <!-- ─── Desktop Nav (UNCHANGED) ─────────────────────────────── -->
+    <!-- ─── Desktop Nav ──────────────────────────────────────────── -->
     <nav id="desktop-nav">
       <div class="logo">Justin Kim</div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#FCAS_Designation">FCAS</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#FCAS_Designation">FCAS</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"></button>
+      </div>
     </nav>
 
-    <!-- ─── Mobile Nav (UNCHANGED) ──────────────────────────────── -->
+    <!-- ─── Mobile Nav ───────────────────────────────────────────── -->
     <nav id="hamburger-nav">
       <div class="logo">Justin Kim</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span><span></span><span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about"            onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience"       onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#FCAS_Designation" onclick="toggleMenu()">FCAS</a></li>
-          <li><a href="#projects"         onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact"          onclick="toggleMenu()">Contact</a></li>
+      <div class="hamburger-right">
+        <button class="theme-toggle-btn" aria-label="Toggle dark mode"></button>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about"            onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience"       onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#FCAS_Designation" onclick="toggleMenu()">FCAS</a></li>
+            <li><a href="#projects"         onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#contact"          onclick="toggleMenu()">Contact</a></li>
+          </div>
         </div>
       </div>
     </nav>
@@ -47,7 +57,7 @@
       <div class="section__text">
         <p class="section__text__p1">Aspiring FCAS · Actuarial Analyst</p>
         <h1 class="title">Justin Kim</h1>
-        <p class="section__text__p2">Property &amp; Casualty Insurance</p>
+        <p class="section__text__p2"><span id="typewriter-text"></span><span class="tw-cursor"></span></p>
         <div class="btn-container">
           <button class="btn btn-color-2" onclick="window.open('')">Download Resume</button>
           <button class="btn btn-color-1" onclick="location.href='#contact'">Contact Me</button>
@@ -154,20 +164,20 @@
             <div class="tl-card-header">
               <img src="./assets/Verisk.png" alt="Verisk" class="tl-logo" />
               <div class="tl-meta">
-                <h3 class="tl-role">Actuarial Analyst</h3>
-                <p class="tl-company">Verisk / ISO — Excess &amp; Reinsurance</p>
+                <h3 class="tl-role">Actuarial Analyst – Excess &amp; Reinsurance</h3>
+                <p class="tl-company">Verisk / ISO</p>
                 <p class="tl-date">October 2025 – Present</p>
               </div>
             </div>
             <div class="tl-tags">
-              <span class="tag">SQL</span><span class="tag">Python</span>
-              <span class="tag">ETL</span><span class="tag">ARIMA</span>
-              <span class="tag">Power BI</span><span class="tag">ERP Migration</span>
+              <span class="tag">Python</span><span class="tag">VBA</span>
+              <span class="tag">Rulebook</span><span class="tag">Excel</span>
+              <span class="tag">Numerical Methods</span><span class="tag">Cloud Migration</span>
             </div>
             <ul class="tl-bullets">
-              <li><strong>⚙️ Product Development:</strong> .</li>
-              <li><strong>📉 Reserving:</strong> .</li>
-              <li><strong>📈 Analytics:</strong> .</li>
+              <li><strong>☁️ Platform Migration:</strong> Leading ISO Rapid Valuator modernization — migrating Excel-based actuarial workflows to Verisk's cloud Rulebook platform, streamlining ratemaking at scale.</li>
+              <li><strong>⚡ Numerical Methods:</strong> Implemented Newton-Raphson root-finding in Python for PSOLD layering calculations, replacing legacy iterative methods and achieving a <strong>71%</strong> reduction in runtime.</li>
+              <li><strong>🔧 Automation:</strong> Developed VBA macros to automate Size of Loss Matrix generation across <strong>100+</strong> liability layers, eliminating manual tabulation.</li>
             </ul>
           </div>
         </div>
@@ -181,20 +191,19 @@
             <div class="tl-card-header">
               <img src="./assets/RBC.png" alt="RBC" class="tl-logo" />
               <div class="tl-meta">
-                <h3 class="tl-role">Actuarial Analyst</h3>
+                <h3 class="tl-role">Actuarial Analyst – Life Portfolio</h3>
                 <p class="tl-company">RBC Insurance</p>
                 <p class="tl-date">September 2025 – October 2025</p>
               </div>
             </div>
             <div class="tl-tags">
-              <span class="tag">SQL</span><span class="tag">Python</span>
-              <span class="tag">ETL</span><span class="tag">ARIMA</span>
-              <span class="tag">Power BI</span>
+              <span class="tag">R</span><span class="tag">Microsoft Access</span>
+              <span class="tag">GGY AXIS</span><span class="tag">VBA</span>
+              <span class="tag">IFRS 17</span><span class="tag">Life Insurance</span>
             </div>
             <ul class="tl-bullets">
-              <li><strong>⚙️ Product Development:</strong> .</li>
-              <li><strong>📉 Second:</strong> .</li>
-              <li><strong>📈 Third:</strong> .</li>
+              <li><strong>📊 Experience Analysis:</strong> Conducted lapse experience study on <strong>50,000+</strong> life insurance policies using R and Microsoft Access, drawing on <strong>10+ years</strong> of historical data to quantify valuation and pricing assumption impacts.</li>
+              <li><strong>📋 IFRS 17:</strong> Supported IFRS 17 reporting and model validation in GGY AXIS; built VBA macros for reconciliation workflows, reducing manual processing by <strong>~35%</strong>.</li>
             </ul>
           </div>
         </div>

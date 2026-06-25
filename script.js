@@ -340,9 +340,176 @@ function initFCASRoadmap() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   DYNAMIC FEATURES
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Returns the SVG moon icon used in the theme toggle when light mode is active. */
+function moonIconHTML() {
+  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>`;
+}
+
+/* Returns the SVG sun icon used in the theme toggle when dark mode is active. */
+function sunIconHTML() {
+  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>`;
+}
+
+/* Drives the 2px gradient progress bar at the top of the page as the user scrolls. */
+function initScrollProgress() {
+  const bar = document.getElementById("scroll-progress");
+  if (!bar) return;
+  window.addEventListener("scroll", () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    if (total <= 0) return;
+    bar.style.width = (window.scrollY / total * 100) + "%";
+  }, { passive: true });
+}
+
+/* Highlights the nav link whose corresponding section is currently in view. */
+function initActiveNav() {
+  const sectionIds = ["about", "experience", "FCAS_Designation", "projects", "contact"];
+  const links = document.querySelectorAll(
+    "#desktop-nav .nav-links a, #hamburger-nav .menu-links a"
+  );
+
+  function update() {
+    const scrollY = window.scrollY + 100;
+    let current = "";
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    links.forEach((a) => {
+      a.classList.toggle("nav-active", a.getAttribute("href") === "#" + current);
+    });
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
+
+/* Cycles through role descriptor phrases with a typing and erasing animation on the hero subtitle. */
+function initTypewriter() {
+  const el = document.getElementById("typewriter-text");
+  if (!el) return;
+  const phrases = [
+    "Actuarial Analyst", "Risk Modeler · P&C", "Data Scientist",
+    "Aspiring FCAS", "Property & Casualty"
+  ];
+  let pi = 0, ci = 0, deleting = false;
+
+  function tick() {
+    const phrase = phrases[pi];
+    if (deleting) {
+      ci--;
+      el.textContent = phrase.slice(0, ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 420); return; }
+      setTimeout(tick, 45);
+    } else {
+      ci++;
+      el.textContent = phrase.slice(0, ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
+      setTimeout(tick, 88);
+    }
+  }
+
+  setTimeout(tick, 600);
+}
+
+/* Animates each timeline connector line into view as its row enters the viewport. */
+function initTimelineDraw() {
+  const obs = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("tl-drawn"); obs.unobserve(e.target); }
+    }),
+    { threshold: 0.15 }
+  );
+  document.querySelectorAll(".tl-item").forEach((el) => obs.observe(el));
+}
+
+/* Counts numeric .abn stat values up from zero with an ease-out animation triggered on scroll. */
+function initCounters() {
+  const obs = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      const el  = e.target;
+      const raw = el.textContent.trim();
+      const num = parseFloat(raw);
+      if (isNaN(num)) return;
+      const suffix   = raw.replace(String(num), "");
+      const duration = 1200;
+      const start    = performance.now();
+      function tick(now) {
+        const p     = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * num) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }),
+    { threshold: 0.5 }
+  );
+  document.querySelectorAll(".abn").forEach((el) => obs.observe(el));
+}
+
+/* Shifts the hero profile photo opposite the cursor for a subtle depth parallax effect. */
+function initHeroParallax() {
+  const section = document.getElementById("profile");
+  const photo   = section && section.querySelector(".section__pic-container");
+  if (!section || !photo) return;
+
+  photo.style.transition = "transform 0.12s ease-out";
+
+  section.addEventListener("mousemove", (e) => {
+    const r = section.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    photo.style.transform = `translate(${-x * 28}px, ${-y * 18}px)`;
+  }, { passive: true });
+
+  section.addEventListener("mouseleave", () => {
+    photo.style.transform = "translate(0, 0)";
+  });
+}
+
+/* Reads localStorage to apply the saved theme on load and wires click handlers on all toggle buttons. */
+function initDarkMode() {
+  const toggles = document.querySelectorAll(".theme-toggle-btn");
+
+  function apply(isDark) {
+    document.body.classList.toggle("dark-mode", isDark);
+    toggles.forEach((btn) => { btn.innerHTML = isDark ? sunIconHTML() : moonIconHTML(); });
+  }
+
+  /* Inline script in <body> already set .dark-mode if needed; just sync icons */
+  apply(document.body.classList.contains("dark-mode"));
+
+  toggles.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const isDark = !document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      apply(isDark);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    BOOT
    ═══════════════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
+  initDarkMode();
   initFCASRoadmap();
   tagAnimatables();
   initNavScroll();
@@ -350,6 +517,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initTimeline();
   initBentoCards();
   initTiltCards();
+  initScrollProgress();
+  initActiveNav();
+  initTypewriter();
+  initTimelineDraw();
+  initCounters();
+  initHeroParallax();
 });
 
 window.addEventListener("resize", positionTrack, { passive: true });
